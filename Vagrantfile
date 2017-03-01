@@ -14,8 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, path: "nerves_bootstrap.sh"
 
-  config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  config.vm.provider "vmware_fusion" do |v|
+    v.vmx["memsize"] = "1024"
   end
 
   # Disable automatic box update checking. If you disable this, then
