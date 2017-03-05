@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 apt-get update
-apt-get install -y git g++ libssl-dev libncurses5-dev bc m4 make unzip
-apt-get install -y libc6:i386 libstdc++6:i386 zlib1g:i386 gcc-multilib
+apt-get -y upgrade
+apt-get -y -f install git g++ libssl-dev libncurses5-dev bc m4 make unzip libmnl-dev libssh-dev bison cmake automake autoconf build-essential libpq-dev
+apt-get -y -f install curl wget libtool python python-pip cpio bzip2 gcc python3-ply ncurses-dev python-yaml python2
 
 # packages not recommended by nerves-sdk that seem to be required
 apt-get install -y zip unzip make
