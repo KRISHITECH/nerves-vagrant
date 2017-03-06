@@ -9,14 +9,11 @@ sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev
 sudo apt-get -y -f install default-jdk linux-headers-$(uname -r)
 
 #update apt sources
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add erlang_solutions.asc
 echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" | sudo tee -a /etc/apt/sources.list
 echo "deb https://packages.erlang-solutions.com/ubuntu xenial contrib" | sudo tee -a /etc/apt/sources.list
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-
-#add psql key
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
-sudo apt-key add -
-
 
 
 #install rvm
