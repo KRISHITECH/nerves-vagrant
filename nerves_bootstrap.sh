@@ -6,12 +6,18 @@ sudo apt-get -y upgrade
 sudo apt-get -y -f install git g++ libssl-dev libncurses5-dev bc m4 make unzip libmnl-dev libssh-dev bison cmake automake autoconf build-essential libpq-dev
 sudo apt-get -y -f install curl wget libtool python python-pip cpio bzip2 gcc python3-ply ncurses-dev python-yaml python2
 sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev 
-sudo apt-get -y -f install default-jdk
+sudo apt-get -y -f install default-jdk linux-headers-$(uname -r)
 
 #update apt sources
 echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" | sudo tee -a /etc/apt/sources.list
 echo "deb https://packages.erlang-solutions.com/ubuntu xenial contrib" | sudo tee -a /etc/apt/sources.list
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+#add psql key
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
+sudo apt-key add -
+
+
 
 #install rvm
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
@@ -30,7 +36,8 @@ sudo apt-get update
 sudo apt-get -y update
 sudo apt-get build-dep postgresql-common node nodejs 
 
-#add asdf node, erlang & elixir
+#add asdf node, psql, erlang & elixir
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
