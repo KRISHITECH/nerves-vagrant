@@ -49,3 +49,13 @@ asdf install nodejs 6.10.0
 asdf install erlang 19.2
 asdf install elixir 1.4.1
 asdf install postgres 9.6.2
+
+#set default versions
+asdf global nodejs 6.10.0
+asdf global erlang 19.2
+asdf global elixir 1.4.1
+asdf global postgres 9.6.2
+
+#start postgres server
+pg_ctl start -i
+
