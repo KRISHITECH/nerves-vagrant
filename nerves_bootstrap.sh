@@ -26,10 +26,10 @@ rvm install ruby-2.4.0 --default --binary
 
 #install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.2.1
-echo -e '\n. ~/.asdf/asdf.sh' >> ~/.bashrc
-echo -e '\n. ~/.asdf/completions/asdf.bash' >> ~/.bashrc
-source '~/.asdf/asdf.sh'
-source '~/.asdf/completions/asdf.bash'
+echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
+source '$HOME/.asdf/asdf.sh'
+source '$HOME/.asdf/completions/asdf.bash'
 
 
 #housekeeping
