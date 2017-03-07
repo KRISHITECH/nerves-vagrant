@@ -43,11 +43,10 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VMware:
   #
-  config.vm.provider :vmware_fusion do |v|
+  config.vm.provider :vmware_fusion do |vmware|
      # Customize the amount of memory on the VM:
-    v.vmx["memsize"] = 2048
-    v.vmx["numvcpus"] = 4
-    v.vmx["ethernet0.pcislotnumber"] = 33
+    vmware.vmx["memsize"] = 2048
+    vmware.vmx["numvcpus"] = 4
   end
   #
   # View the documentation for the provider you are using for more
@@ -63,9 +62,9 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-	apt update 
-	apt -y full-upgrade
-  SHELL
+  # config.vm.provision "shell", inline: <<-SHELL
+	# apt update 
+	# apt -y full-upgrade
+  # SHELL
   config.vm.provision "shell", path: "./nerves_bootstrap.sh"
 end
