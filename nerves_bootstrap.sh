@@ -57,5 +57,5 @@ asdf global elixir 1.4.1
 asdf global postgres 9.6.2
 
 #start postgres server
-pg_ctl start -i
+pg_ctl start
 
