@@ -43,3 +43,9 @@ asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git && bash ~/.asd
 asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
+
+#install erlang, node, psql, elixir
+asdf install nodejs 6.10.0
+asdf install erlang 19.2.0
+asdf install elixir 1.4.1
+asdf install postgres 9.6.2
