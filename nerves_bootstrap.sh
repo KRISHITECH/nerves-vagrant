@@ -26,17 +26,17 @@ rvm install ruby-2.4.0 --default --binary
 
 #install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.2.1
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
-source ~/.asdf/asdf.sh
-source ~/.asdf/completions/asdf.bash
+echo -e '\n. ~/.asdf/asdf.sh' >> ~/.bashrc
+echo -e '\n. ~/.asdf/completions/asdf.bash' >> ~/.bashrc
+source '~/.asdf/asdf.sh'
+source '~/.asdf/completions/asdf.bash'
 
 
 #housekeeping
 sudo apt-get update
 sudo apt-get -y update
 sudo apt-get -y autoremove
-sudo apt-get build-dep npm erlang 
+sudo apt-get build-dep nodejs erlang 
 
 #add asdf node, psql, erlang & elixir
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git && bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
