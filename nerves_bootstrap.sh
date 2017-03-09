@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -x
 
 # housekeeping & requirements
@@ -53,7 +53,7 @@ asdf plugin-update --all
 #install node
 asdf list-all nodejs 
 echo 'Which one do you want?' 
-read -p "nodeversion:" 
+read -p "nodeversion:" continue
 asdf install nodejs $nodeversion 
 asdf global nodejs $nodeversion
 
@@ -61,7 +61,7 @@ asdf global nodejs $nodeversion
 #install erlang
 asdf list-all erlang
 echo 'Which one do you want?' 
-read -p "erlangversion:" 
+read -p "erlangversion:" continue 
 asdf install erlang $erlangversion 
 asdf global erlang $erlangversion
 
@@ -69,14 +69,14 @@ asdf global erlang $erlangversion
 #install elixir
 asdf list-all elixir 
 echo 'Which one do you want?' 
-read -p "elixirversion:" 
+read -p "elixirversion:" continue
 asdf install elixir $elixirversion 
 asdf global elixir $elixirversion
 
 #install postgres
 asdf list-all postgres 
 echo 'Which one do you want?' 
-read -p "postgresversion:"
+read -p "postgresversion:" continue 
 asdf install postgres $postgresversion 
 asdf global postgres $postgresversion
 
