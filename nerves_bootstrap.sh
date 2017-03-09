@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+set -x
 
 # housekeeping & requirements
-sudo apt-get update
-sudo apt-get -y upgrade
+sudo apt update
+sudo apt -y full-upgrade
 sudo apt-get -y -f install git g++ libssl-dev libncurses5-dev bc m4 make unzip libmnl-dev libssh-dev bison cmake automake autoconf build-essential libpq-dev
 sudo apt-get -y -f install curl wget libtool python python-pip cpio bzip2 gcc python3-ply ncurses-dev python-yaml
 sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev
@@ -49,11 +50,35 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 #update asdf plugins
 asdf plugin-update --all
 
-#install erlang, node, psql, elixir
-asdf list-all nodejs && echo 'Which one do you want?' && read -p nodeversion && asdf install nodejs $nodeversion && asdf global nodejs $nodeversion
-asdf list-all erlang && echo 'Which one do you want?' && read -p erlangversion && asdf install erlang $erlangversion && asdf global erlang $erlangversion
-asdf list-all elixir && echo 'Which one do you want?' && read -p elixirversion && asdf install elixir $elixirversion && asdf global elixir $elixirversion
-asdf list-all postgres && echo 'Which one do you want?' && read -p postgresversion && asdf install postgres $postgresversion && asdf global postgres $postgresversion
+#install node
+asdf list-all nodejs 
+echo 'Which one do you want?' 
+read -p "nodeversion:" 
+asdf install nodejs $nodeversion 
+asdf global nodejs $nodeversion
+
+
+#install erlang
+asdf list-all erlang
+echo 'Which one do you want?' 
+read -p "erlangversion:" 
+asdf install erlang $erlangversion 
+asdf global erlang $erlangversion
+
+
+#install elixir
+asdf list-all elixir 
+echo 'Which one do you want?' 
+read -p "elixirversion:" 
+asdf install elixir $elixirversion 
+asdf global elixir $elixirversion
+
+#install postgres
+asdf list-all postgres 
+echo 'Which one do you want?' 
+read -p "postgresversion:"
+asdf install postgres $postgresversion 
+asdf global postgres $postgresversion
 
 #start postgres server
 pg_ctl start
