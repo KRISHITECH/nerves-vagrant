@@ -5,12 +5,14 @@ sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y -f install git g++ libssl-dev libncurses5-dev bc m4 make unzip libmnl-dev libssh-dev bison cmake automake autoconf build-essential libpq-dev
 sudo apt-get -y -f install curl wget libtool python python-pip cpio bzip2 gcc python3-ply ncurses-dev python-yaml
-sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev 
+sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev
+sudo apt-get -y -f install arduino gcc-avr avr-libc avrdude
+sudo apt-get -y -f install python-configobj python-jinja2 python-serial 
 sudo apt-get -y -f install default-jdk linux-headers-$(uname -r)
 
 #update apt sources
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-wget --quiet -O - http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add - 
+wget --quiet -O - http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
 echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" | sudo tee -a /etc/apt/sources.list
 echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" | sudo tee -a /etc/apt/sources.list
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -36,7 +38,7 @@ source $HOME/.asdf/completions/asdf.bash
 sudo apt-get update
 sudo apt-get -y update
 sudo apt-get -y autoremove
-sudo apt-get build-dep nodejs erlang 
+sudo apt-get build-dep nodejs erlang
 
 #add asdf node, psql, erlang & elixir
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git && bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
@@ -58,4 +60,3 @@ asdf global postgres 9.6.2
 
 #start postgres server
 pg_ctl start
-
