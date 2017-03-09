@@ -50,10 +50,10 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 asdf plugin-update --all
 
 #install erlang, node, psql, elixir
-asdf list-all nodejs && echo 'Which one do you want?' && read nodeversion && asdf install nodejs $nodeversion && asdf global nodejs $nodeversion
-asdf list-all erlang && echo 'Which one do you want?' && read erlangversion && asdf install erlang $erlangversion && asdf global erlang $erlangversion
-asdf list-all elixir && echo 'Which one do you want?' && read elixirversion && asdf install elixir $elixirversion && asdf global elixir $elixirversion
-asdf list-all postgres && echo 'Which one do you want?' && read postgresversion && asdf install postgres $postgresversion && asdf global postgres $postgresversion
+asdf list-all nodejs && echo 'Which one do you want?' && read -p nodeversion && asdf install nodejs $nodeversion && asdf global nodejs $nodeversion
+asdf list-all erlang && echo 'Which one do you want?' && read -p erlangversion && asdf install erlang $erlangversion && asdf global erlang $erlangversion
+asdf list-all elixir && echo 'Which one do you want?' && read -p elixirversion && asdf install elixir $elixirversion && asdf global elixir $elixirversion
+asdf list-all postgres && echo 'Which one do you want?' && read -p postgresversion && asdf install postgres $postgresversion && asdf global postgres $postgresversion
 
 #start postgres server
 pg_ctl start
