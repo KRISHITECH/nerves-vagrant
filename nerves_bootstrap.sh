@@ -46,17 +46,14 @@ asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 
-#install erlang, node, psql, elixir
-asdf install nodejs 6.10.0
-asdf install erlang 19.2
-asdf install elixir 1.4.1
-asdf install postgres 9.6.2
+#update asdf plugins
+asdf plugin-update --all
 
-#set default versions
-asdf global nodejs 6.10.0
-asdf global erlang 19.2
-asdf global elixir 1.4.1
-asdf global postgres 9.6.2
+#install erlang, node, psql, elixir
+asdf list-all nodejs && echo 'Which one do you want?' && read nodeversion && asdf install nodejs $nodeversion && asdf global nodejs $nodeversion
+asdf list-all erlang && echo 'Which one do you want?' && read erlangversion && asdf install erlang $erlangversion && asdf global erlang $erlangversion
+asdf list-all elixir && echo 'Which one do you want?' && read elixirversion && asdf install elixir $elixirversion && asdf global elixir $elixirversion
+asdf list-all postgres && echo 'Which one do you want?' && read postgresversion && asdf install postgres $postgresversion && asdf global postgres $postgresversion
 
 #start postgres server
 pg_ctl start
