@@ -9,7 +9,7 @@ sudo apt-get -y -f install curl wget libtool python python-pip cpio bzip2 gcc py
 sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev
 sudo apt-get -y -f install arduino gcc-avr avr-libc avrdude
 sudo apt-get -y -f install python-configobj python-jinja2 python-serial 
-sudo apt-get -y -f install default-jdk linux-headers-$(uname -r)
+sudo apt-get -y -f install default-jdk linux-headers-"$(uname -r)"
 
 #update apt sources
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -21,7 +21,7 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
 #install rvm
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-\curl -sSL https://get.rvm.io | bash -s stable
+curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 
 #install ruby and set as default
@@ -29,10 +29,10 @@ rvm install ruby-2.4.0 --default --binary
 
 #install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.2.1
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
+echo -e "\n. $HOME/.asdf/asdf.sh" >> ~/.bashrc
+echo -e "\n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
 
 
 #housekeeping
@@ -52,33 +52,33 @@ asdf plugin-update --all
 
 #install node
 asdf list-all nodejs 
-echo 'Which one do you want?' 
-read -p "nodeversion:" continue
-asdf install nodejs $nodeversion 
-asdf global nodejs $nodeversion
+echo "Which one do you want?" 
+read -rs -p "nodeversion:" < /dev/tty
+asdf install nodejs "$nodeversion" 
+asdf global nodejs "$nodeversion"
 
 
 #install erlang
 asdf list-all erlang
-echo 'Which one do you want?' 
-read -p "erlangversion:" continue 
-asdf install erlang $erlangversion 
-asdf global erlang $erlangversion
+echo "Which one do you want?" 
+read -rs -p "erlangversion:" < /dev/tty 
+asdf install erlang "$erlangversion" 
+asdf global erlang "$erlangversion"
 
 
 #install elixir
 asdf list-all elixir 
-echo 'Which one do you want?' 
-read -p "elixirversion:" continue
-asdf install elixir $elixirversion 
-asdf global elixir $elixirversion
+echo "Which one do you want?"
+read -p "elixirversion:" < /dev/tty
+asdf install elixir "$elixirversion" 
+asdf global elixir "$elixirversion"
 
 #install postgres
 asdf list-all postgres 
-echo 'Which one do you want?' 
-read -p "postgresversion:" continue 
-asdf install postgres $postgresversion 
-asdf global postgres $postgresversion
+echo "Which one do you want?" 
+read -rs -p "postgresversion:" < /dev/tty 
+asdf install postgres "$postgresversion" 
+asdf global postgres "$postgresversion"
 
 #start postgres server
 pg_ctl start
