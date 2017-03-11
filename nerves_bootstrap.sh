@@ -1,14 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
+set -x
 
 # housekeeping & requirements
-sudo apt-get update
-sudo apt-get -y upgrade
+sudo apt update
+sudo apt -y full-upgrade
 sudo apt-get -y -f install git g++ libssl-dev libncurses5-dev bc m4 make unzip libmnl-dev libssh-dev bison cmake automake autoconf build-essential libpq-dev
 sudo apt-get -y -f install curl wget libtool python python-pip cpio bzip2 gcc python3-ply ncurses-dev python-yaml
 sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev
 sudo apt-get -y -f install arduino gcc-avr avr-libc avrdude
 sudo apt-get -y -f install python-configobj python-jinja2 python-serial 
-sudo apt-get -y -f install default-jdk linux-headers-$(uname -r)
+sudo apt-get -y -f install default-jdk linux-headers-"$(uname -r)"
 
 #update apt sources
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -20,7 +21,7 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
 #install rvm
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-\curl -sSL https://get.rvm.io | bash -s stable
+curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 
 #install ruby and set as default
@@ -28,10 +29,10 @@ rvm install ruby-2.4.0 --default --binary
 
 #install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.2.1
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
+echo -e "\n. $HOME/.asdf/asdf.sh" >> ~/.bashrc
+echo -e "\n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
 
 
 #housekeeping
@@ -46,17 +47,38 @@ asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 
-#install erlang, node, psql, elixir
-asdf install nodejs 6.10.0
-asdf install erlang 19.2
-asdf install elixir 1.4.1
-asdf install postgres 9.6.2
+#update asdf plugins
+asdf plugin-update --all
 
-#set default versions
-asdf global nodejs 6.10.0
-asdf global erlang 19.2
-asdf global elixir 1.4.1
-asdf global postgres 9.6.2
+#install node
+asdf list-all nodejs 
+echo "Which one do you want?" 
+read -rs -p "nodeversion:" < /dev/tty
+asdf install nodejs "$nodeversion" 
+asdf global nodejs "$nodeversion"
+
+
+#install erlang
+asdf list-all erlang
+echo "Which one do you want?" 
+read -rs -p "erlangversion:" < /dev/tty 
+asdf install erlang "$erlangversion" 
+asdf global erlang "$erlangversion"
+
+
+#install elixir
+asdf list-all elixir 
+echo "Which one do you want?"
+read -p "elixirversion:" < /dev/tty
+asdf install elixir "$elixirversion" 
+asdf global elixir "$elixirversion"
+
+#install postgres
+asdf list-all postgres 
+echo "Which one do you want?" 
+read -rs -p "postgresversion:" < /dev/tty 
+asdf install postgres "$postgresversion" 
+asdf global postgres "$postgresversion"
 
 #start postgres server
 pg_ctl start
