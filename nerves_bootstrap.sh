@@ -1,6 +1,7 @@
-#!/bin/bash
-set -x
+#!/usr/local/env bash -x --login vagrant
 
+whoami; sleep 30secs; continue
+  
 # housekeeping & requirements
 sudo apt update
 sudo apt -y full-upgrade
