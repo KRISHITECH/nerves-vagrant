@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+
 set -x
+
 su - vagrant
 
 # housekeeping & requirements
@@ -10,13 +12,19 @@ sudo apt -y autoremove
 # install time
 sudo apt-get -y -f install git g++ libssl-dev libncurses5-dev bc m4 make \
                            unzip libmnl-dev libssh-dev bison cmake automake \
-                           autoconf build-essential libpq-dev
+                           autoconf build-essential libpq-dev libffi-dev clang
+
 sudo apt-get -y -f install curl wget libtool python python-pip cpio bzip2 gcc \
                            python3-ply ncurses-dev python-yaml
-sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev
+                           python3-ply ncurses-dev python-yaml graphviz python-apt
+
+sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev python3-apt
+
 sudo apt-get -y -f install arduino gcc-avr avr-libc avrdude arduino-core arduino-mk
+
 sudo apt-get -y -f install python-configobj python-jinja2 python-serial 
-sudo apt-get -y -f install default-jdk linux-headers-"$(uname -r)"
+
+sudo apt-get -y -f install default-jdk linux-headers-"$(uname -r)" squashfs-tools ssh-askpass
 
 # update package sources & keys
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -47,7 +55,14 @@ source "$HOME/.asdf/completions/asdf.bash"
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y autoremove
-sudo apt-get build-dep nodejs elixir erlang-dev postgresql arduino
+sudo apt-get build-dep nodejs elixir erlang-dev postgresql arduino 
+
+#fix sources
+git clone https://github.com/davidfoerster/apt-remove-duplicate-source-entries.git
+cd ~/apt-remove-duplicate-source-entries
+sudo ./apt-remove-duplicate-source-entries.py --help
+sleep 60
+sudo ./apt-remove-duplicate-source-entries.py
 
 #add asdf node, psql, erlang & elixir
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git && bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
@@ -59,24 +74,24 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 asdf plugin-update --all
 
 #install node
-asdf list-all nodejs | sort - | read -r -p nodeversion
+asdf list-all nodejs >> echo command "sort -" | read -r -p "$nodeversion"
 asdf install nodejs "$nodeversion" 
 asdf global nodejs "$nodeversion"
 
 
 #install erlang
-asdf list-all erlang | sort - | read -r -p erlangversion
+asdf list-all erlang | sort - | read -r -p "$erlangversion"
 asdf install erlang "$erlangversion" 
 asdf global erlang "$erlangversion"
 
 
 #install elixir
-asdf list-all elixir | sort - | read -r -p elixirversion
+asdf list-all elixir | sort - | read -r -p "$elixirversion"
 asdf install elixir "$elixirversion" 
 asdf global elixir "$elixirversion"
 
 #install postgres
-asdf list-all postgres | sort - | read -r -p postgresversion
+asdf list-all postgres | sort - | read -r -p "$postgresversion"
 asdf install postgres "$postgresversion" 
 asdf global postgres "$postgresversion"
 
