@@ -15,7 +15,6 @@ sudo apt-get -y -f install git g++ libssl-dev libncurses5-dev bc m4 make \
                            autoconf build-essential libpq-dev libffi-dev clang
 
 sudo apt-get -y -f install curl wget libtool python python-pip cpio bzip2 gcc \
-                           python3-ply ncurses-dev python-yaml
                            python3-ply ncurses-dev python-yaml graphviz python-apt
 
 sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev python3-apt
