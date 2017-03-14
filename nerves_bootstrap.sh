@@ -57,7 +57,7 @@ sudo apt-get -y autoremove
 
 #fix sources
 git clone https://github.com/davidfoerster/apt-remove-duplicate-source-entries.git
-cd ~/apt-remove-duplicate-source-entries
+cd ~/apt-remove-duplicate-source-entries || exit
 sudo ./apt-remove-duplicate-source-entries.py --help
 sleep 60
 sudo ./apt-remove-duplicate-source-entries.py
@@ -72,10 +72,10 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 asdf plugin-update --all
 
 #make global .tool-versions file and install latest versions (comment out to disable this section)
-echo "erlang 'asdf list-all erlang | sort -nr - | head -1'" > .tool-versions
-echo "elixir 'asdf list-all elixir | sort -nr - | head -1;" >> .tool-versions
-echo "postgres 'asdf list-all postgres | sort -nr - | head -1'" >> .tool-versions
-echo "nodejs 'asdf list-all nodejs | sort -nr - | head -1'" >> .tool-versions
+echo -n "erlang"; echo { asdf list-all erlang; sort -nr -; head -1 } > .tool-versions
+echo -n "elixir"; echo { asdf list-all elixir; sort -nr -; head -1 } >> .tool-versions
+echo -n "postgres"; echo { asdf list-all postgres; sort -nr -; head -1 } >> .tool-versions
+echo -n "nodejs"; echo { asdf list-all nodejs; sort -nr -; head -1 } >> .tool-versions
 
 #asdf install
 asdf install
