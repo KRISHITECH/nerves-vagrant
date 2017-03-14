@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -x
-
 su - vagrant
 
 # housekeeping & requirements
@@ -54,7 +53,7 @@ source "$HOME/.asdf/completions/asdf.bash"
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y autoremove
-sudo apt-get build-dep nodejs elixir erlang-dev postgresql arduino 
+#sudo apt-get build-dep nodejs elixir erlang-dev postgresql arduino 
 
 #fix sources
 git clone https://github.com/davidfoerster/apt-remove-duplicate-source-entries.git
@@ -72,27 +71,37 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 #update asdf plugins
 asdf plugin-update --all
 
+#make global .tool-versions file and install latest versions (comment out to disable this section)
+echo "erlang 'asdf list-all erlang | sort -nr - | head -1'" > .tool-versions
+echo "elixir 'asdf list-all elixir | sort -nr - | head -1;" >> .tool-versions
+echo "postgres 'asdf list-all postgres | sort -nr - | head -1'" >> .tool-versions
+echo "nodejs 'asdf list-all nodejs | sort -nr - | head -1'" >> .tool-versions
+
+#asdf install
+asdf install
+
+
 #install node
-asdf list-all nodejs >> echo command "sort -" | read -r -p "$nodeversion"
-asdf install nodejs "$nodeversion" 
-asdf global nodejs "$nodeversion"
+#asdf list-all nodejs >> echo command "sort -" | read -r -p "$nodeversion"
+#asdf install nodejs "$nodeversion" 
+#asdf global nodejs "$nodeversion"
 
 
 #install erlang
-asdf list-all erlang | sort - | read -r -p "$erlangversion"
-asdf install erlang "$erlangversion" 
-asdf global erlang "$erlangversion"
+#asdf list-all erlang | sort - | read -r -p "$erlangversion"
+#asdf install erlang "$erlangversion" 
+#asdf global erlang "$erlangversion"
 
 
 #install elixir
-asdf list-all elixir | sort - | read -r -p "$elixirversion"
-asdf install elixir "$elixirversion" 
-asdf global elixir "$elixirversion"
+#asdf list-all elixir | sort - | read -r -p "$elixirversion"
+#asdf install elixir "$elixirversion" 
+#asdf global elixir "$elixirversion"
 
 #install postgres
-asdf list-all postgres | sort - | read -r -p "$postgresversion"
-asdf install postgres "$postgresversion" 
-asdf global postgres "$postgresversion"
+#asdf list-all postgres | sort - | read -r -p "$postgresversion"
+#asdf install postgres "$postgresversion" 
+#asdf global postgres "$postgresversion"
 
 #start postgres server
 pg_ctl start
