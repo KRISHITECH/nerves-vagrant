@@ -59,7 +59,7 @@ sudo apt-get -y autoremove
 git clone https://github.com/davidfoerster/apt-remove-duplicate-source-entries.git
 cd ~/apt-remove-duplicate-source-entries || exit
 sudo ./apt-remove-duplicate-source-entries.py --help
-sleep 60
+sleep 60s
 sudo ./apt-remove-duplicate-source-entries.py
 
 #add asdf node, psql, erlang & elixir
@@ -73,9 +73,9 @@ asdf plugin-update --all
 
 #make global .tool-versions file and install latest versions (comment out to disable this section)
 echo -n "nodejs  " > .tool-versions && asdf list-all nodejs | sort -nr - | head -1 >> .tool-versions
-echo -n "erlang  " > .tool-versions && asdf list-all erlang | sort -nr - | head -1 >> .tool-versions
-echo -n "elixir  " > .tool-versions && asdf list-all elixir | sort -nr - | head -1 >> .tool-versions
-echo -n "postgres  " > .tool-versions && asdf list-all postgres | sort -nr - | head -1 >> .tool-versions
+echo -n "erlang  " >> .tool-versions && asdf list-all erlang | sort -nr - | head -1 >> .tool-versions
+echo -n "elixir  " >> .tool-versions && asdf list-all elixir | sort -nr - | head -1 >> .tool-versions
+echo -n "postgres  " >> .tool-versions && asdf list-all postgres | sort -nr - | head -1 >> .tool-versions
 
 #asdf install
 asdf install
@@ -103,5 +103,7 @@ asdf install
 #asdf install postgres "$postgresversion" 
 #asdf global postgres "$postgresversion"
 
-#start postgres server
-pg_ctl start
+sleep 60s
+
+#reboot because why not
+sudo reboot now
