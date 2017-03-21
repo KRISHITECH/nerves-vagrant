@@ -45,8 +45,8 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.2.1
   echo -e "\n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
 
 # just in case
-source "$HOME/.asdf/asdf.sh"
-source "$HOME/.asdf/completions/asdf.bash"
+source ~/.asdf/asdf.sh
+source ~/.asdf/completions/asdf.bash
 
 
 #housekeeping
