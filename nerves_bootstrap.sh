@@ -20,7 +20,7 @@ sudo apt-get -y -f install openssl fop xsltproc unixodbc-dev python3-apt
 
 sudo apt-get -y -f install arduino gcc-avr avr-libc avrdude arduino-core arduino-mk
 
-sudo apt-get -y -f install python-configobj python-jinja2 python-serial 
+sudo apt-get -y -f install python-configobj python-jinja2 python-serial
 
 sudo apt-get -y -f install default-jdk linux-headers-"$(uname -r)" squashfs-tools ssh-askpass
 
@@ -53,7 +53,7 @@ source ~/.asdf/completions/asdf.bash
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y autoremove
-#sudo apt-get build-dep nodejs elixir erlang-dev postgresql arduino 
+#sudo apt-get build-dep nodejs elixir erlang-dev postgresql arduino
 
 #fix sources
 git clone https://github.com/davidfoerster/apt-remove-duplicate-source-entries.git
@@ -72,10 +72,10 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 asdf plugin-update --all
 
 #make global .tool-versions file and install latest versions (comment out to disable this section)
-echo -n "nodejs  " > .tool-versions && asdf list-all nodejs | sort -nr - | head -1 >> .tool-versions
-echo -n "erlang  " >> .tool-versions && asdf list-all erlang | sort -nr - | head -1 >> .tool-versions
-echo -n "elixir  " >> .tool-versions && asdf list-all elixir | sort -nr - | head -1 >> .tool-versions
-echo -n "postgres  " >> .tool-versions && asdf list-all postgres | sort -nr - | head -1 >> .tool-versions
+echo -n "nodejs " > .tool-versions && asdf list-all nodejs | sort -nr - | head -1 >> .tool-versions
+echo -n "erlang " >> .tool-versions && asdf list-all erlang | sort -nr - | head -1 >> .tool-versions
+echo -n "elixir " >> .tool-versions && asdf list-all elixir | sort -nr - | head -1 >> .tool-versions
+echo -n "postgres " >> .tool-versions && asdf list-all postgres | sort -nr - | head -1 >> .tool-versions
 
 #asdf install
 asdf install
@@ -83,24 +83,24 @@ asdf install
 
 #install node
 #asdf list-all nodejs >> echo command "sort -" | read -r -p "$nodeversion"
-#asdf install nodejs "$nodeversion" 
+#asdf install nodejs "$nodeversion"
 #asdf global nodejs "$nodeversion"
 
 
 #install erlang
 #asdf list-all erlang | sort - | read -r -p "$erlangversion"
-#asdf install erlang "$erlangversion" 
+#asdf install erlang "$erlangversion"
 #asdf global erlang "$erlangversion"
 
 
 #install elixir
 #asdf list-all elixir | sort - | read -r -p "$elixirversion"
-#asdf install elixir "$elixirversion" 
+#asdf install elixir "$elixirversion"
 #asdf global elixir "$elixirversion"
 
 #install postgres
 #asdf list-all postgres | sort - | read -r -p "$postgresversion"
-#asdf install postgres "$postgresversion" 
+#asdf install postgres "$postgresversion"
 #asdf global postgres "$postgresversion"
 
 sleep 60s
