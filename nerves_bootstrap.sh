@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 set -x
-su - vagrant
+
+bash --login vagrant
 
 # housekeeping & requirements
 sudo apt update
@@ -72,10 +73,10 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 asdf plugin-update --all
 
 #make global .tool-versions file and install latest versions (comment out to disable this section)
-echo "nodejs $(asdf list-all nodejs | sort -nr - | head -1)" > ~/.tool-versions
-echo "erlang $(asdf list-all erlang | sort -nr - | head -1)" >> ~/.tool-versions 
-echo "elixir $(asdf list-all elixir | sort -nr - | head -1)" >> ~/.tool-versions 
-echo "postgres $(asdf list-all postgres | sort -nr - | head -1)" >> ~/.tool-versions
+echo "nodejs $(asdf list-all nodejs | sort -nr - | head -1)" | tee ~/.tool-versions
+echo "erlang $(asdf list-all erlang | sort -nr - | head -1)" | tee -a ~/.tool-versions 
+echo "elixir $(asdf list-all elixir | sort -nr - | head -1)" | tee -a ~/.tool-versions 
+echo "postgres $(asdf list-all postgres | sort -nr - | head -1)" | tee -a ~/.tool-versions
 
 #asdf install
 asdf install
@@ -103,7 +104,7 @@ asdf install
 #asdf install postgres "$postgresversion"
 #asdf global postgres "$postgresversion"
 
-sleep 60s
+sleep 10s
 
 #reboot because why not
 sudo reboot now
