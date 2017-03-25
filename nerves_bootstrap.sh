@@ -2,7 +2,7 @@
 
 set -x
 
-bash --login vagrant
+su vagrant -
 
 # housekeeping & requirements
 sudo apt update
@@ -60,8 +60,10 @@ sudo apt-get -y autoremove
 git clone https://github.com/davidfoerster/apt-remove-duplicate-source-entries.git
 cd ~/apt-remove-duplicate-source-entries || exit
 sudo ./apt-remove-duplicate-source-entries.py --help
-sleep 60s
-sudo ./apt-remove-duplicate-source-entries.py
+sleep 10s
+sudo ./apt-remove-duplicate-source-entries.py -y
+sleep 10s
+sudo apt-get update
 
 #add asdf node, psql, erlang & elixir
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git && bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
@@ -73,10 +75,15 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
 asdf plugin-update --all
 
 #make global .tool-versions file and install latest versions (comment out to disable this section)
-echo "nodejs $(asdf list-all nodejs | sort -nr - | head -1)" | tee ~/.tool-versions
-echo "erlang $(asdf list-all erlang | sort -nr - | head -1)" | tee -a ~/.tool-versions 
-echo "elixir $(asdf list-all elixir | sort -nr - | head -1)" | tee -a ~/.tool-versions 
-echo "postgres $(asdf list-all postgres | sort -nr - | head -1)" | tee -a ~/.tool-versions
+touch ~/.tool-versions
+echo -n nodejs \
+"$(asdf list-all nodejs | sort -nr - | head -1)" >> ~/.tool-versions
+echo -n erlang \
+"$(asdf list-all erlang | sort -nr - | head -1)" >> ~/.tool-versions
+echo -n elixir \
+"$(asdf list-all elixir | sort -nr - | head -1)" >> ~/.tool-versions
+echo -n postgres \
+"$(asdf list-all postgres | sort -nr - | head -1)" >> ~/.tool-versions
 
 #asdf install
 asdf install
