@@ -67,5 +67,5 @@ Vagrant.configure("2") do |config|
 	# apt update
 	# apt -y full-upgrade
   # SHELL
-  config.vm.provision "shell", path: "./nerves_bootstrap.sh", privileged: false
+  config.vm.provision "shell", path: "nerves_bootstrap.sh", privileged: false
 end
